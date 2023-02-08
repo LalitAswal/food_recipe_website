@@ -27,7 +27,6 @@
   }
   
   div{
-    text-align: center;
     margin-top: px;
   
   }
@@ -39,3 +38,66 @@
   
   }
  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+ 
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .login {
+    text-align: center;
+    margin-top: 50px;
+    border: 2px;
+    padding: 34px 30px;
+
+  }
+
+  #username, #password{
+    border: 2px solid white;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    padding: 14px 20px;
+    margin: 8px 0;
+
+
+  }
+  input[type=text], input[type=password]{
+    border: 1px solid rgb(10, 10, 10);
+    padding: 14px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 100%;
+  }
+  button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+
+  }
+
+  .signup{
+    text-align: center;
+    margin-top: 50px;
+    border: 100px;
+    padding: 34px 400px;
+  }
