@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000;
 
 const server = http.createServer(app);
 // pool();
-server.listen(PORT, ()=>{
+module.exports = server.listen(PORT, ()=>{
     console.log(`PORT is listening at ${PORT} in ${process.env.NODE_ENV} mode..`);
 
 });
