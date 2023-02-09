@@ -6,13 +6,16 @@ const foodDetails = require('../controllers/foodDetail.controller');
 const login = require('../controllers/login.controller');
 const authenticate = require('../middleware/authentication');
 const logout = require("../controllers/logout");
+const signUp = require("../controllers/signUp.controller");
 
 
 router.post("/login",
         login);
 
 router.post("/logout",
-        logout)        
+        logout) 
+router.post("/signUp",
+        signUp)                 
 
 router.get('/foodRecipeList',
                 authenticate,
@@ -25,6 +28,7 @@ router.get('/RecipeList',
 router.get('/foodDetail',
                 authenticate,
                 foodDetails)
+
 
                 
 module.exports = router;

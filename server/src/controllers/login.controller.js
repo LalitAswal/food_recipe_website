@@ -19,7 +19,7 @@ let login  =async(req, res)=>{
         }
         return res.status(401).json({message:"Logged in failed"})
     } catch (error) {
-        res.status(401).json({message: "userid or password incorrect"})
+        res.status(401).json({message: "userId or password incorrect"})
     }
 
 }

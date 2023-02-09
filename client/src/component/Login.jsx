@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../component/navbar.css';
 
 
 
@@ -31,27 +32,32 @@ import { useNavigate } from 'react-router-dom';
             console.log('error ---->',err);
             navigate('/')
           }
-
+      
+     
     }
 
+  const HandleSignUp =()=>{
+    navigate('/signup');
 
+} 
   return (
     (
-        <div>
+        <div class='login'>
 
             
         <form onSubmit={SubmitForm}>
-          <label>
-            UserID
+          <label id ="username">
+            UserID:
             <input type="text" value={userId} onChange={e => setUserId(e.target.value)} />
           </label>
           <br />
-          <label>
+          <label id ="password">
             Password:
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
           <br />
           <button type="submit" >Log In</button>
+          <button onClick={HandleSignUp}>signup</button>
         </form>
         </div>
       )
