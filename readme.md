@@ -22,6 +22,10 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
+3. Import Mysql Data,[https://github.com/LalitAswal/food_recipe_website/tree/Developer/server/src/mySql]
+take a google help to import sql data
+
+
  `server`  `node`\
 Runs the app in the development mode.\
 Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
