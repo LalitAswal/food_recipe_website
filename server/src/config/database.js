@@ -1,6 +1,6 @@
-var mysql = require('mysql2');
+let mysql = require('mysql2');
 
-var connection  = mysql.createConnection({
+let connect  = mysql.createConnection({
     //  host  : 'localhost',
     host     : '',
     user     : 'root',
@@ -8,11 +8,12 @@ var connection  = mysql.createConnection({
     database : 'food_recipe'
 });
 
-connection.connect((err) => {
+
+connect.connect((err) => {
     if(err) throw err;
     console.log('Connected to MySQL Server!');
 });
 
 
-module.exports = connection;
+module.exports = connect;
 

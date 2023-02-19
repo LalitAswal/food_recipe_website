@@ -1,4 +1,4 @@
-const connection = require('../config/database');
+const { writepool } = require('../config/connection');
 
 
 const signUpModel = async(id,name, user_id, password, verify_password, email) =>{
@@ -7,8 +7,8 @@ const signUpModel = async(id,name, user_id, password, verify_password, email) =>
     let query =  `INSERT INTO user (id,name, user_id, password, verify_password, email) 
                     values (?,?,?,?,?,?) ` ;
  
-    const results = await connection.promise().query(query,[id,name, user_id, password, verify_password, email]);
-    return {"data":'Sucessfully register'}
+    const results = await writepool.query(query,[id,name, user_id, password, verify_password, email]);
+    return {"data":'Successfully register'}
 
 
 
