@@ -1,9 +1,9 @@
-const connection = require('../config/database');
+const {readpool} = require('../config/connection');
 
 let userLogin = async(userId, password)=>{
     let query = 'select * from user WHERE user_id=? AND password=?';
-    const results = await connection.promise().query(query,[userId,password]);
-    return {"data":results[0]}
+    const results = await readpool.query(query,[userId, password]);
+    return {"data":results}
 
 }
 
