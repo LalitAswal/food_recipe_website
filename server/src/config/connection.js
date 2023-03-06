@@ -1,27 +1,24 @@
-const connect = require('./database');
+const pool = require('./database');
 
 class WritePool {
-    constructor(){
-        this.pool = connect.promise()
-    }
     async query(query, values){
-        const result = await this.pool.query(query, values);
-        console.log('ressult values is ',result)
-        return result[0];
-
+        try {
+            const result = await pool.query(query, values);
+            return result[0];
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
 class ReadPool {
-    constructor(){
-        this.pool = connect.promise()
-    }
-    async query(query,values){
-        console.log('cehcking line 20 ', query,values)
-        const result = await this.pool.query(query,values);
-        console.log('ressult readpool values is ',result[0])
-
-        return result[0]
+    async query(query, values){
+        try {
+            const result = await pool.query(query, values);
+            return result[0];
+        } catch (error) {
+            throw error;
+        }
     }
 }
 const readpool = new ReadPool();
