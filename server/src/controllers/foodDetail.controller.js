@@ -1,4 +1,4 @@
-var foodDetails = require('../models/foodDetails');
+let foodDetails = require('../models/foodDetails');
 
 
 
