@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../component/navbar.css';
+import Cookies from 'js-cookie';
 
 
 
@@ -17,6 +18,7 @@ import '../component/navbar.css';
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ userId, password })
             });
+            console.log(response)
             if(response.status === 401){
               alert(' incorrect userId or password')
               navigate('/')
@@ -24,7 +26,10 @@ import '../component/navbar.css';
             else{
               
               const data = await response.json();
-              localStorage.setItem('jwt', data.token);
+  
+              // set cookie with JWT token
+              Cookies.set('jwt', data.token);
+
               navigate("/home");
             }
           } catch (err) {
