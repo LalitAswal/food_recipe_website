@@ -29,7 +29,7 @@ import '../component/navbar.css';
             }
           } catch (err) {
 
-            console.log('error ---->',err);
+            console.log('erro---->',err);
             navigate('/')
           }
       

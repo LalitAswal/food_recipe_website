@@ -17,7 +17,6 @@ describe('Get Request', function (){
         })
         .end(function(err, res){
             if (err) done(err);
-            console.log('token===>', typeof(res.body.token))
             let token = res.body.token
             global.token = token;
             expect(res).to.have.status(200);
