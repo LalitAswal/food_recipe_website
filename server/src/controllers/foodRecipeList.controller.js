@@ -1,4 +1,4 @@
-var recipeList = require('../models/recipeList');
+let recipeList = require('../models/recipeList');
 
 
 

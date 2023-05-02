@@ -1,4 +1,4 @@
-var userLogin = require('../models/loginUser');
+let userLogin = require('../models/loginUser');
 const jwt = require('jsonwebtoken');
 
 

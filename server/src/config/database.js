@@ -26,15 +26,24 @@ const connect  = mysql.createConnection({
     user     : process.env.MYSQL_USER,
     password : process.env.MYSQL_PASSWORD,
     database : process.env.MYSQL_DATABASE
+const mysql = require('mysql2/promise');
+
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'root',
+  password: 'P@ssw0rd@1',
+  database: 'food_recipe'
 });
 
-
-connect.connect((err) => {
-    if(err) throw err;
-    console.log('Connected to MySQL Server!');
+pool.getConnection((err, connection) => {
+  if (err) throw err;
+  console.log('Connected to MySQL Server!');
 });
 
 
 module.exports = {connect,
-                redisConnect};
+                redisConnect, 
+pool};
+
 
