@@ -1,6 +1,7 @@
 import "../style/main.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 
 const Navbar = () => {
@@ -8,7 +9,8 @@ const Navbar = () => {
     const navigate = useNavigate();
 
   const checkAuth = () => {
-      const jwt = localStorage.getItem("jwt");
+      const jwt = Cookies.get('jwt');
+
     if (jwt) {
         setIsLoggedIn(true);
     } else {
@@ -17,7 +19,7 @@ const Navbar = () => {
     }
   };
   function LogOut() {
-    localStorage.removeItem('jwt');
+    Cookies.remove('jwt')
     navigate("/");
 }
   useEffect(() => {

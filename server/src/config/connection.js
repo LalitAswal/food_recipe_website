@@ -1,3 +1,4 @@
+const {connect} = require('./database');
 const pool = require('./database');
 
 class WritePool {
