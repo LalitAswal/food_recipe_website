@@ -1,12 +1,12 @@
 ## Food Recipe MERN Stack Project
-This project is a web application for  food recipe steps, ingredients, and search  with the recipe ID using the MERN (mySql, Express.js, React.js, and Node.js) stack.
+This project is a web application for  food recipe steps, ingredients, and search  with the food name using the MERN (mySql, Express.js, React.js, and Node.js) stack.
 
 
 ---
 ### Feature
 - User authentication and authorization using JWT
 - The home page displays food with the creator's name, description, and image
-- Recipe list can be searched using recipe ID
+- Recipe list can be searched using food name
 - The food detail page shows the creator's name, description, ingredient amount, steps, and image
 
 ---
