@@ -1,17 +1,23 @@
 const { writepool } = require('../config/connection');
+const bcrypt = require('bcrypt');
 
+const signUpModel = async (name, user_id, password, email) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-const signUpModel = async(id,name, user_id, password, verify_password, email) =>{
-    // console.log('checking controller', id,user_id, name, password, verify_password, email)
+    const query = `
+        INSERT INTO user (name, user_id, password, email)
+        VALUES (?, ?, ?, ?)
+    `;
 
-    let query =  `INSERT INTO user (id,name, user_id, password, verify_password, email) 
-                    values (?,?,?,?,?,?) ` ;
- 
-    const results = await writepool.query(query,[id,name, user_id, password, verify_password, email]);
-    return {"data":'Successfully register'}
+    try {
+        await writepool.query(query, [name, user_id, hashedPassword, email]);
+        return { success: true, message: 'Successfully registered' };
+    } catch (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+            throw new Error('User ID or email already exists');
+        }
+        throw err;
+    }
+};
 
-
-
-
-}
-module.exports =signUpModel;
+module.exports = signUpModel;

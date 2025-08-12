@@ -1,15 +1,16 @@
+// models/searchByRecipeId.js
 const { readpool } = require('../config/connection');
 
-let searchRecipeByRId = async(recipe_id) =>{
-    let query = `select step from process where recipe_id=?`;
-    let result = await readpool.query(query,[recipe_id]);
-    if (result !==[] && result.length >0){
-        return {"data":result}
-    }else{
+let searchRecipeByRId = async (recipe_id) => {
+    const query = `SELECT step FROM process WHERE recipe_id = ?`;
 
-        throw {'data': `no such data with name ${recipe_id}`}
+    const [rows] = await readpool.query(query, [recipe_id]);
+
+    if (rows.length > 0) {
+        return { data: rows };
+    } else {
+        throw { data: `No recipe found with ID ${recipe_id}` };
     }
-
-}
+};
 
 module.exports = searchRecipeByRId;

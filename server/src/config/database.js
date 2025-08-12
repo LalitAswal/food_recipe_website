@@ -1,16 +1,25 @@
-const mysql = require('mysql2/promise');
+const { writeConnection, readConnection } = require('./database');
 
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: 'P@ssw0rd@1',
-  database: 'food_recipe'
-});
+class DBPool {
+    constructor(pool) {
+        this.pool = pool;
+    }
 
-pool.getConnection((err, connection) => {
-  if (err) throw err;
-  console.log('Connected to MySQL Server!');
-});
+    async query(query, values = []) {
+        try {
+            const [rows, fields] = await this.pool.query(query, values);
+            return { rows, fields };
+        } catch (error) {
+            console.error(`Database query failed:
+                SQL: ${query}
+                Params: ${JSON.stringify(values)}
+                Error: ${error.message}`);
+            throw new Error('Database operation failed');
+        }
+    }
+}
 
-module.exports = pool;
+const writepool = new DBPool(writeConnection);
+const readpool = new DBPool(readConnection);
+
+module.exports = { readpool, writepool };

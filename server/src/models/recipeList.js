@@ -1,10 +1,24 @@
 const { readpool } = require('../config/connection');
 
-let recipeList = async()=>{
-    let query = 'select recipe.name ,user.name  ,recipe.`desc` ,recipe.image_url  from recipe  JOIN user on recipe.creator_id=user.id';
-    const results = await readpool.query(query);
-    return {"data":results}
+const getRecipeList = async (limit = 10, offset = 0) => {
+    try {
+        const query = `
+            SELECT recipe.name AS recipeName, 
+                   user.name AS creatorName, 
+                   recipe.desc, 
+                   recipe.image_url
+            FROM recipe
+            JOIN user ON recipe.creator_id = user.id
+            LIMIT ? OFFSET ?;
+        `;
 
-}
+        const [results] = await readpool.query(query, [limit, offset]);
+        return results;
+        
+    } catch (error) {
+        console.error("Database error in getRecipeList:", error.message);
+        throw new Error("Failed to fetch recipe list");
+    }
+};
 
-module.exports =recipeList;
+module.exports = getRecipeList;
