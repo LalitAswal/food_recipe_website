@@ -1,27 +1,25 @@
-const pool = require('./database');
+const mysql = require('mysql2/promise');
 
-class WritePool {
-    async query(query, values){
-        try {
-            const result = await pool.query(query, values);
-            return result[0];
-        } catch (error) {
-            throw error;
-        }
-    }
-}
+// Primary (write) connection
+const writeConnection = mysql.createPool({
+    host: process.env.PRIMARY_DB_HOST || 'localhost',
+    user: process.env.PRIMARY_DB,
+    password: process.env.PRIMARY_DB_PASS,
+    database: process.env.PRIMARY_DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
-class ReadPool {
-    async query(query, values){
-        try {
-            const result = await pool.query(query, values);
-            return result[0];
-        } catch (error) {
-            throw error;
-        }
-    }
-}
-const readpool = new ReadPool();
-const writepool = new WritePool();
+// Replica (read) connection
+const readConnection = mysql.createPool({
+    host: process.env.REPLICA_DB_HOST ,
+    user: process.env.REPLICA_DB,
+    password: process.env.REPLICA_DB_PASS,
+    database: process.evv.REPLICA_DB,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
-module.exports ={ readpool, writepool}; 
+module.exports = { writeConnection, readConnection };

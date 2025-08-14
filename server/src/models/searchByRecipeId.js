@@ -1,5 +1,5 @@
 // models/searchByRecipeId.js
-const { readpool } = require('../config/connection');
+const { readpool } = require('../config/database');
 
 let searchRecipeByRId = async (recipe_id) => {
     const query = `SELECT step FROM process WHERE recipe_id = ?`;

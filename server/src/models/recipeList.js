@@ -1,4 +1,4 @@
-const { readpool } = require('../config/connection');
+const { readpool } = require('../config/database');
 
 const getRecipeList = async (limit = 10, offset = 0) => {
     try {

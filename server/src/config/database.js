@@ -1,20 +1,20 @@
-const { writeConnection, readConnection } = require('./database');
+const { writeConnection, readConnection } = require('./connection');
 
 class DBPool {
     constructor(pool) {
         this.pool = pool;
     }
 
-    async query(query, values = []) {
+    async query(sql, params = []) {
         try {
-            const [rows, fields] = await this.pool.query(query, values);
+            const [rows, fields] = await this.pool.query(sql, params);
             return { rows, fields };
         } catch (error) {
-            console.error(`Database query failed:
-                SQL: ${query}
-                Params: ${JSON.stringify(values)}
-                Error: ${error.message}`);
-            throw new Error('Database operation failed');
+            console.error(`[DB ERROR]
+SQL: ${sql}
+Params: ${JSON.stringify(params)}
+Error: ${error.stack}`);
+            throw error;
         }
     }
 }

@@ -1,4 +1,4 @@
-const { readpool } = require('../config/connection');
+const { readpool } = require('../config/database');
 const bcrypt = require('bcrypt');
 
 let userLogin = async (userId, password) => {
